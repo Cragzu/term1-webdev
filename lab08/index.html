@@ -12,6 +12,7 @@
 </head>
 <body>
 <script>
+    // Dynamically generate between 0 and 26 buttons with letters of the alphabet.
     let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
                     'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     let numOfButtons = parseInt(prompt("How many buttons to display? ", "0"));
@@ -27,7 +28,27 @@
     }
     generateButtons(numOfButtons)
 
+    // Create recipe objects and call them with servings methods.
+    function recipe(title, servings, ingredients) {
+        this.title = title;
+        this.servings = servings;
+        this.ingredients = ingredients;
+        this.print = function () {
+            document.write('<br>Title: '+ title + '<br>');
+            document.write('Serves: ' + servings + '<br>' + 'Ingredients:<br>');
+            for (let i = 0; i < ingredients.length; i++) {
+                document.write(ingredients[i] + '<br>');
+            }
+        }
+    }
 
+    let macaroni = new recipe("Macaroni", 4, ['cheese', 'pasta']);
+    let stirFry = new recipe("Stir fry", 2, ['noodles', 'vegetables', 'tofu', 'soy sauce']);
+
+    macaroni.print();
+
+    console.log(macaroni);
+    console.log(stirFry);
 
 </script>
 </body>
