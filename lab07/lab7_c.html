@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            img {
+                position: absolute;
+            }
+            .centerBox {
+                display: flex;
+                justify-content: center;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <h3>This corgi can't stop, won't stop!</h3>
+
+        <div class="centerBox">
+            <img id="dog" src="https://i.pinimg.com/originals/14/3c/88/143c8842070839dc2fe40cc9f9c48ec3.png">
+        </div>
+        
+        <script>
+            // get window dimensions
+            let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            // initialize variables for image coordinates (start in the centre)
+            let myLeft = 0;  
+            let myTop = 0;
+
+            function dogMover() {
+                document.getElementById("dog").style.left = myLeft+"px";  // set coordinates to random value
+                document.getElementById("dog").style.top = myTop+"px";
+
+                myLeft = Math.floor(Math.random() * (width - document.getElementById("dog").width)); // account for image size
+                myTop = Math.floor(Math.random() * (height - document.getElementById("dog").height));                
+                }
+            setInterval(dogMover, 2000);  // function executes every 2000 ms (2 sec)
+        </script>
+    </body>
+</html>

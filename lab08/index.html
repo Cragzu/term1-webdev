@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Buttons and Recipe Classes</title>
+    <style>
+        button {
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+                    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let numOfButtons = parseInt(prompt("How many buttons to display? ", "0"));
+    function generateButtons(num) {
+        for (i = 0; i < num; i++) {
+        let btn = document.createElement("BUTTON"); // create a new HTML button element within JS script
+        let currentLetter = letters[i];
+
+        document.body.appendChild(btn); // display it on the page
+        btn.innerHTML = currentLetter;
+        btn.onclick = function () {window.alert("Button " + currentLetter + " clicked!")}
+        }
+    }
+    generateButtons(numOfButtons)
+
+
+
+</script>
+</body>
+</html>

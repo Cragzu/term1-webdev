@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3>Check the console for random numbers!</h3>
+        <script>
+            function generateRandom(a, b) {
+                let min;
+                let max;
+
+                if (a < b) {
+                    min = a;
+                    max = b;
+                }
+                else {
+                    min = b;
+                    max = a;
+                }
+
+                return (Math.floor(Math.random() * (max - min) ) + min); // formula for generating random number within a range
+            }
+
+            console.log("Between 4 and 1: " + generateRandom(4, 1))
+            console.log("Between 4 and 1: " + generateRandom(4, 1))
+            console.log("Between -9 and 10: " + generateRandom(-9, 10))
+            console.log("Between 13 and 4: " + generateRandom(13, 4))
+
+        </script>
+    </body>
+</html>

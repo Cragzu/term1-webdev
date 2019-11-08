@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            document.write("Prime Numbers:\n")
+
+            for (var i = 2; i <= 40; i++) {  // iterate through numbers between 1 and 40
+            
+                var isPrime = true;  // reset prime variable
+                
+                for (var j = 2; j < i; j++) {  // iterate through all numbers between 2 and i-1 to check divisibility
+                    
+                    if (i % j === 0) {  // number is divisible by something
+                        isPrime = false;  // number is not prime
+                    }
+                }
+
+                if (isPrime === true) {  // number is prime
+                    document.write(i + ", ");  // print number
+                } 
+            }
+        </script>
+    </body>
+</html>

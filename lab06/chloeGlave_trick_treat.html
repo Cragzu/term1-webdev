@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: moccasin;
+            }
+            .text {
+                text-align: center;
+                font-size: 50px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                color: black;
+            }
+            .centerBox {
+                display: flex;
+                justify-content: center;
+            }
+            .button {
+            font-size: 40px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin: 10px;
+            padding: 5px;
+            display: inline-flex;
+            border: none;
+            }
+            img {
+                margin: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <p class = "text" id = "titleText">Welcome to BCIT COMP 1536</p>
+
+        <div class = "centerBox">
+            <button class = "text, button" id = "orangeButton" style = "background-color: orange;">Orange</button>
+
+            <button class = "text, button" id = "greyButton" style = "background-color: slategray;">Grey</button>
+
+            <button class = "text, button" id = "cyanButton" style = "background-color: cyan;">Cyan</button> 
+        </div>
+        
+        <div class = "centerBox">
+            <img id = "door1" src = "images/door1.jpg">
+            <img id = "door2" src = "images/door2.jpg">
+            <img id = "door3" src = "images/door3.jpg">
+        </div>
+
+        <div class = "centerBox">
+            <img id = "prize" width = 250px height = 250px>
+        </div>
+
+        <script>
+            // change title text color with buttons
+            function colorClickHandler(colorInput) {
+                document.getElementById("titleText").style.color = colorInput;
+            }
+
+            // if functions are passed with parameters, a second function calling the first is needed, as shown here.
+            document.getElementById("orangeButton").onclick = function() {colorClickHandler("orange")};
+            document.getElementById("greyButton").onclick = function() {colorClickHandler("slategray")};
+            document.getElementById("cyanButton").onclick = function() {colorClickHandler("cyan")};
+
+        </script>
+
+        <script>
+            // reveal things behind doors
+            function doorClickHandler(imgInput) {
+                document.getElementById("prize").src = imgInput;
+            }
+            
+            document.getElementById("door1").onclick = function() {doorClickHandler("images/ghost.png")};    
+            document.getElementById("door2").onclick = function() {doorClickHandler("images/bat.png")};
+            document.getElementById("door3").onclick = function() {doorClickHandler("images/candy.png")};
+
+        </script>
+    </body>
+</html>

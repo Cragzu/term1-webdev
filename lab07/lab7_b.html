@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3>This cat has places to be</h3>
+
+        <img id="cat" src="https://i.pinimg.com/originals/83/cb/55/83cb5509665a4bfddedc36db3dae43f7.png" style="position:absolute;">
+        <script>
+            // initialize variables for image coordinates
+            let myLeft = 0;  
+            let myTop = 0;
+
+            // get window dimensions
+            let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            function catMover() {
+                myLeft = Math.floor(Math.random() * (width - document.getElementById("cat").width)); // account for image size
+                myTop = Math.floor(Math.random() * (height - document.getElementById("cat").height));
+
+                document.getElementById("cat").style.left = myLeft+"px";  // set coordinates to random value
+                document.getElementById("cat").style.top = myTop+"px";
+                }
+            document.getElementById("cat").onclick = catMover;  // function executes on each click
+        </script>
+    </body>
+</html>

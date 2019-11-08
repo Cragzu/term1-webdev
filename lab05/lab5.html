@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+        h1 {
+            text-align: center;
+            color: lightslategray;
+        }
+    </style>
+
+    </head>
+    <body>
+        <h1 id = "result"></h1>
+        <script> // convert decimal input to binary
+            function getInput() {
+                return parseInt(prompt("Enter a decimal number between 1 and 1000 to be converted to binary", 1));
+            }
+            
+            function calculateBinary(decimalInput) {
+                let binaryOutput = "";
+                savedDecimal = decimalInput;
+                while (decimalInput > 0) {
+                    console.log('test');
+                    binaryOutput = (decimalInput % 2).toString() + binaryOutput;
+                    decimalInput = parseInt(decimalInput / 2);
+                }
+                
+                return (savedDecimal + " in binary is: " + binaryOutput)  // convert to binary using string method
+            }
+
+            function printBinary(binaryOutput) {
+                document.getElementById("result").innerHTML = (binaryOutput);
+            }
+
+            printBinary(calculateBinary(getInput()));
+        </script>
+
+        <script> // return the sum of all numbers in two arrays
+            function calculateArraySum(array1, array2) {
+                let sum = 0;
+                for (let i = 0; i < array1.length; i++) {
+                    sum += array1[i];
+                }
+
+                for (let j = 0; j < array2.length; j++) {
+                    sum += array2[j];
+                }
+                return sum;
+            }
+
+            console.log("The sum of the arrays is: " + calculateArraySum([1,2,3], [3,4]));
+        </script>
+
+        <script> // determine whether an array has more positive or negative numbers
+        function determineGreaterSign(inputArray) {
+            let positiveCount = 0;
+            let negativeCount = 0; 
+
+            for (let i = 0; i < inputArray.length; i++) {
+                if (inputArray[i] < 0) {
+                    negativeCount++;
+                }
+                else {
+                    positiveCount++;
+                }
+            }
+            if (positiveCount > negativeCount) {
+                return "Positive";
+            }
+            else if (positiveCount < negativeCount) {
+                return "Negative";
+            }
+            else {
+                return "Equal";
+            }
+        }       
+        
+        console.log(determineGreaterSign([-1, 4, -2]));
+        </script>
+    </body>   
+</html>
