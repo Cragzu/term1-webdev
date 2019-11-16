@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-
+<h1>Generate some buttons and they'll move around!</h1>
 <p id="question">How many buttons to create? (Between 5 and 100)</p>
 <label>
     <input id="answerField" type="text" value="5"/>
@@ -37,8 +37,8 @@
         this.width = "10em";
         this.btn = document.createElement("BUTTON");
         this.btn.style.position = "absolute";
-        this.btn.style.top = top;
-        this.btn.style.left = left;
+        this.btn.style.top = top + "em";
+        this.btn.style.left = left + "em";
         this.btn.style.background = this.color;
         document.body.appendChild(this.btn);
     }
@@ -61,10 +61,13 @@
     }
 
     function generateButtons(numberToGenerate) {
+        let buttonXCoord = 10;
+        let buttonYCoord = 12;
         for (i = 0; i < numberToGenerate; i++) {
             let randomColor = colors[Math.floor(Math.random()*colors.length)]; // random color from colors array
-            let btn = new Button(randomColor, "500px", "500px"); // create a new HTML button element within JS script
+            let btn = new Button(randomColor, buttonYCoord, buttonXCoord); // create a new HTML button element within JS script
             buttons.push(btn);
+            buttonXCoord += 2;
         }
     }
 
@@ -76,8 +79,8 @@
             let buttonXCoord = Math.floor(Math.random() * screenWidth); // account for size
             let buttonYCoord = Math.floor(Math.random() * screenHeight);
 
-            buttons[i].btn.style.left = buttonXCoord+"px";  // set coordinates to random value within constraints
-            buttons[i].btn.style.top = buttonYCoord+"px";
+            buttons[i].btn.style.left = buttonXCoord + "px";  // set coordinates to random value within constraints
+            buttons[i].btn.style.top = buttonYCoord + "px";
         }
     }
 
