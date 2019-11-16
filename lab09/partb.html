@@ -16,6 +16,8 @@
 </head>
 <body>
 
+<h1>Memory Game</h1>
+<h2>Generate some buttons, then remember the colour order! They will move, and you click them in the right order.</h2>
 <p id="question">How many buttons to create? (Between 5 and 100)</p>
 <label>
     <input id="answerField" type="text" value="5"/>
@@ -62,7 +64,7 @@
 
     function generateButtons(numberToGenerate) {
         let buttonXCoord = 10;
-        let buttonYCoord = 10;
+        let buttonYCoord = 18;
         for (i = 0; i < numberToGenerate; i++) {
             let randomColor = colors[Math.floor(Math.random()*colors.length)]; // random color from colors array
             let btn = new Button(randomColor, buttonYCoord, buttonXCoord); // create a new button obj within JS script
@@ -73,7 +75,6 @@
 
     function buttonMover() { // Move each button to a random location every 2 seconds
         // get window dimensions
-        console.log("Timeout triggered");
         screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         for (i = 0; i < buttons.length; i++) {
@@ -85,14 +86,22 @@
         }
     }
 
+    function clickChecker() {
+        console.log("success!");
+        console.log("colour is: ", buttons[0].btn.style.background);
+
+    }
+
     let startButton = document.getElementById("startButton");
     startButton.onclick = function() {
         let numOfButtons = parseInt((document.getElementById("answerField")).value);
         if (checkAnswer(numOfButtons) === true) {
             generateButtons(numOfButtons);
             setTimeout(buttonMover, (numOfButtons * 1000));  // buttons are moved after n seconds
+            buttons[0].btn.onclick = clickChecker;
         }
     }
+
 
 </script>
 </body>
