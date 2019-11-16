@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 9</title>
+    <style>
+        body {
+            background-color: bisque;
+        }
+        button {
+
+        }
+        #startButton {
+            height: auto;
+            width: auto;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<p id="question">How many buttons to create? (Between 5 and 100)</p>
+<label>
+    <input id="answerField" type="text" value="5"/>
+    <button id="startButton">Go!</button>
+</label>
+<p id="errorMessage"></p>
+
+<script>
+    // Dynamically generate n buttons with random colours.
+    let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'black', 'grey', 'pink'];
+    let buttons = []; // empty array to store button objects
+
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    function Button(color, top, left) {
+        this.color = color;
+        this.height = "5em";
+        this.width = "10em";
+        this.btn = document.createElement("BUTTON");
+        this.btn.style.position = "absolute";
+        this.btn.style.top = top;
+        this.btn.style.left = left;
+        this.btn.style.background = this.color;
+        document.body.appendChild(this.btn);
+    }
+
+    function checkAnswer(valueToCheck) {
+        let display = document.getElementById("errorMessage");
+        if (isNaN(valueToCheck)) {
+            display.style.visibility = "visible";
+            display.innerHTML = "That's not a number!";
+        }
+        else if (valueToCheck < 5 || valueToCheck > 100) {
+            display.style.visibility = "visible";
+            display.innerHTML = "That number is not between 5 and 100!";
+        }
+        else {
+            display.style.visibility = "hidden";
+            return true;
+        }
+        return false;
+    }
+
+    function generateButtons(numberToGenerate) {
+        for (i = 0; i < numberToGenerate; i++) {
+            let randomColor = colors[Math.floor(Math.random()*colors.length)]; // random color from colors array
+            let btn = new Button(randomColor, "500px", "500px"); // create a new HTML button element within JS script
+            buttons.push(btn);
+        }
+    }
+
+    function buttonMover() { // Move each button to a random location every 2 seconds
+         // get window dimensions
+         screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+         screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+         for (i = 0; i < buttons.length; i++) {
+            let buttonXCoord = Math.floor(Math.random() * screenWidth); // account for size
+            let buttonYCoord = Math.floor(Math.random() * screenHeight);
+            console.log(buttons[i].btn.style.left);
+            console.log(buttons[i]);
+
+            buttons[i].btn.style.left = buttonXCoord+"px";  // set coordinates to random value within constraints
+            buttons[i].btn.style.top = buttonYCoord+"px";
+        }
+    }
+
+    let startButton = document.getElementById("startButton");
+    startButton.onclick = function() {
+        let numOfButtons = parseInt((document.getElementById("answerField")).value);
+        if (checkAnswer(numOfButtons) === true) {
+            generateButtons(numOfButtons);
+        }
+    }
+
+    setInterval(buttonMover, 2000);  // function executes every 2000 ms (2 sec)
+
+</script>
+</body>
+</html>
