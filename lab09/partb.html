@@ -29,10 +29,7 @@
     // Dynamically generate n buttons with random colours.
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'black', 'grey', 'pink'];
     let buttons = []; // empty array to store button objects
-    let userSelection = [];
-
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    let screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let userSelection = []; // empty array to store user choices, sorted by colour
 
     function Button(color, top, left) {
         this.color = color;
@@ -86,8 +83,8 @@
         screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         for (i = 0; i < buttons.length; i++) {
-            let buttonXCoord = Math.floor(Math.random() * screenWidth); // account for size
-            let buttonYCoord = Math.floor(Math.random() * screenHeight);
+            let buttonXCoord = Math.floor(Math.random() * (screenWidth - 50)); // account for size
+            let buttonYCoord = Math.floor(Math.random() * (screenHeight - 50));
 
             buttons[i].btn.style.left = buttonXCoord + "px";  // set coordinates to random value within constraints
             buttons[i].btn.style.top = buttonYCoord + "px";
@@ -97,13 +94,13 @@
     function checkButtonOrder() {
         let display = document.getElementById("errorMessage");
         for (i = 0; i < userSelection.length; i++) {
-            if (userSelection[i] !== buttons[i].btn.style.background) {
+            if (userSelection[i] !== buttons[i].btn.style.background) { // compare colour order
                 display.style.visibility = "visible";
                 display.innerHTML = "Wrong order!";
                 break;
             }
         }
-        if (userSelection.length === buttons.length) {
+        if (userSelection.length === buttons.length) { // all buttons are pressed
             display.style.visibility = "visible";
             display.innerHTML = "Excellent memory!";
         }
@@ -117,7 +114,6 @@
             setTimeout(buttonMover, (numOfButtons * 1000));  // buttons are moved after n seconds
         }
     }
-
 
 </script>
 </body>
