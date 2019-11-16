@@ -29,6 +29,7 @@
     // Dynamically generate n buttons with random colours.
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'black', 'grey', 'pink'];
     let buttons = []; // empty array to store button objects
+    let userSelection = [];
 
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -42,6 +43,13 @@
         this.btn.style.top = top + "em";
         this.btn.style.left = left + "em";
         this.btn.style.background = this.color;
+
+        this.btn.onclick = function() { // method for click behaviour
+            userSelection.push(this.style.background); // add clicked button to array
+            checkButtonOrder();
+
+        }
+
         document.body.appendChild(this.btn);
     }
 
@@ -86,10 +94,19 @@
         }
     }
 
-    function clickChecker() {
-        console.log("success!");
-        console.log("colour is: ", buttons[0].btn.style.background);
-
+    function checkButtonOrder() {
+        let display = document.getElementById("errorMessage");
+        for (i = 0; i < userSelection.length; i++) {
+            if (userSelection[i] !== buttons[i].btn.style.background) {
+                display.style.visibility = "visible";
+                display.innerHTML = "Wrong order!";
+                break;
+            }
+        }
+        if (userSelection.length === buttons.length) {
+            display.style.visibility = "visible";
+            display.innerHTML = "Excellent memory!";
+        }
     }
 
     let startButton = document.getElementById("startButton");
@@ -98,7 +115,6 @@
         if (checkAnswer(numOfButtons) === true) {
             generateButtons(numOfButtons);
             setTimeout(buttonMover, (numOfButtons * 1000));  // buttons are moved after n seconds
-            buttons[0].btn.onclick = clickChecker;
         }
     }
 
